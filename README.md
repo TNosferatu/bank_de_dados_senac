@@ -1,70 +1,114 @@
-Banco de Dados – Café do Senac
+Loja de Carros – Banco de Dados SQL
 
-Este projeto foi desenvolvido como atividade para explorar comandos DDL e DML em SQL, criando um banco de dados para uma cafeteria fictícia chamada Café do Senac.
+Este repositório contém a estrutura e os scripts SQL desenvolvidos para o banco de dados de uma loja de carros fictícia, criada como atividade prática para estudar e aplicar comandos SQL, especialmente DDL e DML.
 
- O que contém neste projeto
+O objetivo do projeto é demonstrar a criação de tabelas, manipulação de dados e organização de um banco de dados completo dentro de um cenário realista envolvendo vendas de veículos.
 
-Criação de banco de dados e tabelas usando DDL
+ Objetivos do Projeto
 
-Inserção, atualização e exclusão de dados usando DML
+Criar um banco de dados do zero usando comandos DDL
 
-Tabelas: Clientes, Produtos, Pedidos e ItensPedido
+Entender e aplicar comandos DML (inserção, atualização e exclusão)
 
-Script organizado na pasta sql_scripts/
+Simular operações reais de uma loja de carros: clientes, estoque, vendas e itens de vendas
 
-Conteúdo Educacional — DDL e DML
- 1. O que é DDL?
+Organizar o repositório com boas práticas
 
-DDL (Data Definition Language) é a categoria de comandos SQL usada para definir estruturas no banco de dados.
+Desenvolver conteúdo explicativo sobre os principais comandos SQL utilizados
 
-Principais comandos DDL
-Comando	Função
-CREATE	Cria bancos e tabelas
-ALTER	Altera tabelas existentes
-DROP	Exclui tabelas ou bancos
-Exemplos usados neste projeto
-CREATE DATABASE cafeteria_senac;
+ Estrutura do Banco de Dados
 
-CREATE TABLE Produtos (
-    produto_id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100),
-    preco DECIMAL(10,2)
-);
+O banco de dados representa uma loja que vende carros novos e seminovos. Ele contém quatro tabelas principais:
 
- 2. O que é DML?
+Clientes
 
-DML (Data Manipulation Language) é usada para manipular os dados dentro das tabelas.
+Armazena informações sobre os clientes da loja.
 
-Principais comandos DML
-Comando	Função
-INSERT	Insere registros
-UPDATE	Atualiza registros
-DELETE	Apaga registros
-SELECT	Consulta dados
-Exemplos usados neste projeto
-INSERT INTO Produtos (nome, preco, estoque)
-VALUES ('Café Expresso', 6.50, 100);
+ Carros
 
-UPDATE Produtos
-SET estoque = estoque - 1
-WHERE produto_id = 1;
+Contém todos os veículos disponíveis para venda, incluindo marca, modelo, ano, preço, cor e estoque.
 
-DELETE FROM Produtos WHERE produto_id = 3;
+Vendas
 
- Estrutura do repositório
+Registra cada venda realizada, associando o cliente, data e valor total.
+
+ItensVenda
+
+Registra cada carro vendido em uma venda específica (caso seja uma venda com mais de um veículo).
+
+ Estrutura do Repositório
 bank_de_dados_senac/
 │ README.md
 │
 └───sql_scripts/
-       cafeteria.sql
+       loja_carros.sql
 
-Como executar o script
+DDL e DML – Conceitos e Exemplos do Projeto
+ DDL (Data Definition Language)
 
-Abra o MySQL Workbench, DBeaver ou outro ambiente SQL
+São comandos usados para definir a estrutura do banco de dados.
 
-Execute o script localizado em:
+Comandos DDL mais usados:
+Comando	Função
+CREATE	Cria tabelas, banco de dados, índices
+ALTER	Altera tabelas existentes
+DROP	Remove tabelas ou bancos
+Exemplos usados neste projeto:
+Criando o banco:
+CREATE DATABASE LojaDeCarros;
 
-sql_scripts/cafeteria.sql
+Criando uma tabela:
+CREATE TABLE Carros (
+    CarroID INT AUTO_INCREMENT PRIMARY KEY,
+    Marca VARCHAR(50),
+    Modelo VARCHAR(80),
+    Ano INT,
+    Preco DECIMAL(10,2),
+    Estoque INT
+);
 
+DML (Data Manipulation Language)
 
-O banco será criado automaticamente.
+Comandos para manipular os dados dentro das tabelas.
+
+Comandos DML mais usados:
+Comando	Função
+INSERT	Insere dados
+UPDATE	Atualiza dados
+DELETE	Exclui dados
+SELECT	Consulta
+Exemplos usados neste projeto:
+Inserindo um carro:
+INSERT INTO Carros (Marca, Modelo, Ano, Preco, Estoque)
+VALUES ('Toyota', 'Corolla 2.0', 2020, 110000.00, 3);
+
+Atualizando estoque:
+UPDATE Carros
+SET Estoque = Estoque - 1
+WHERE CarroID = 1;
+
+Excluindo um registro:
+DELETE FROM Carros
+WHERE CarroID = 5;
+
+Como Executar o Script SQL
+
+Baixe o arquivo loja_carros.sql
+
+Abra seu ambiente SQL (MySQL Workbench, DBeaver, phpMyAdmin etc.)
+
+Execute o script completo
+
+O banco será criado automaticamente com todas as tabelas e dados de exemplo
+
+O que Aprendi com o Projeto
+
+Criar e estruturar bancos de dados reais usando SQL
+
+Entender as diferenças práticas entre DDL e DML
+
+Organizar scripts e arquivos em um repositório GitHub
+
+Criar tabelas com chaves primárias e estrangeiras
+
+Manipular dados de forma profissional
